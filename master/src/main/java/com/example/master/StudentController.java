@@ -19,7 +19,7 @@ public class StudentController {
         String username = usernameField.getText();
         String pass = passwordField.getText();
         if(username.equals("admin")&&pass.equals("password")){
-            
+            System.out.println("test successful");
         }
     }
 }
