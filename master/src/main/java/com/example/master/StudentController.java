@@ -2,7 +2,7 @@ package com.example.master;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-
+import javafx.scene.control.*;
 public class StudentController {
 
     @FXML
