@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ButtonBar?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.shape.Sphere?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="436.0" prefWidth="657.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <VBox layoutX="9.0" layoutY="85.0" prefHeight="107.0" prefWidth="100.0">
+         <children>
+            <Button id="add" mnemonicParsing="false" prefHeight="25.0" prefWidth="82.0" text="Add" />
+            <Button id="update" mnemonicParsing="false" prefHeight="25.0" prefWidth="82.0" text="Update" />
+            <Button id="clear" mnemonicParsing="false" prefHeight="25.0" prefWidth="82.0" text="Clear" />
+            <Button id="delete" mnemonicParsing="false" prefHeight="25.0" prefWidth="82.0" text="Delete" />
+         </children>
+      </VBox>
+      <ImageView id="photo" fitHeight="93.0" fitWidth="113.0" layoutX="101.0" layoutY="30.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../../../../../../Downloads/milad-fakurian-bexwsdM5BCw-unsplash.jpg" />
+         </image>
+      </ImageView>
+      <TextField id="search_field" layoutX="456.0" layoutY="3.0" text="search" />
+      <TextField id="lastname" layoutX="313.0" layoutY="67.0" prefHeight="25.0" prefWidth="113.0" />
+      <TextField layoutX="313.0" layoutY="35.0" prefHeight="25.0" prefWidth="113.0" />
+      <DatePicker id="dob" layoutX="313.0" layoutY="138.0" prefHeight="25.0" prefWidth="113.0" />
+      <ComboBox id="status" layoutX="313.0" layoutY="173.0" prefHeight="25.0" prefWidth="113.0" />
+      <ComboBox id="year" layoutX="518.0" layoutY="92.0" prefHeight="25.0" prefWidth="113.0" />
+      <ComboBox id="course" layoutX="517.0" layoutY="129.0" prefHeight="25.0" prefWidth="113.0" />
+      <ComboBox id="gender" layoutX="313.0" layoutY="101.0" prefHeight="25.0" prefWidth="113.0" />
+      <TextField id="studentid" layoutX="519.0" layoutY="55.0" prefHeight="25.0" prefWidth="113.0" />
+      <Label layoutX="228.0" layoutY="39.0" prefHeight="17.0" prefWidth="64.0" text="First Name " />
+      <Label layoutX="228.0" layoutY="71.0" prefHeight="17.0" prefWidth="75.0" text="Last Name" />
+      <Label layoutX="228.0" layoutY="103.0" prefHeight="17.0" prefWidth="64.0" text="Gender" />
+      <Label layoutX="229.0" layoutY="143.0" prefHeight="17.0" prefWidth="53.0" text="DOB" />
+      <Label layoutX="230.0" layoutY="173.0" prefHeight="17.0" prefWidth="53.0" text="Status" />
+      <Label layoutX="449.0" layoutY="62.0" prefHeight="17.0" prefWidth="64.0" text="Student #" />
+      <Label layoutX="456.0" layoutY="98.0" prefHeight="17.0" prefWidth="44.0" text="Year" />
+      <Label layoutX="456.0" layoutY="130.0" prefHeight="17.0" prefWidth="53.0" text="Course" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="200.0" layoutX="59.0" layoutY="377.0" stroke="BLACK" strokeType="INSIDE" width="559.0" />
+      <Sphere layoutX="340.0" layoutY="402.0" radius="50" />
+      <ButtonBar layoutX="114.0" layoutY="377.0" prefHeight="61.0" prefWidth="445.0">
+         <buttons>
+            <Button id="stgrade_btn" alignment="CENTER" mnemonicParsing="false" text="grade st" />
+            <Button id="addst_btn" alignment="CENTER" mnemonicParsing="false" text="Add st" />
+            <Button id="home_btn" alignment="CENTER" mnemonicParsing="false" text="Home" />
+            <Button id="course_btn" alignment="CENTER" mnemonicParsing="false" text="Avail cour" />
+            <Button id="signout_btn" alignment="CENTER" mnemonicParsing="false" text="signout" />
+         </buttons>
+         <padding>
+            <Insets right="15.0" />
+         </padding>
+      </ButtonBar>
+      <TableView id="studb" layoutX="11.0" layoutY="205.0" prefHeight="117.0" prefWidth="631.0">
+        <columns>
+          <TableColumn prefWidth="75.0" text="C1" />
+          <TableColumn prefWidth="75.0" text="C2" />
+        </columns>
+      </TableView>
+      <Button id="go_btn" layoutX="612.0" layoutY="2.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="32.0" text="Go" />
+   </children>
+</AnchorPane>

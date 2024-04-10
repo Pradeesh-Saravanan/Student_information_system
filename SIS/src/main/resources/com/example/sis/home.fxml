@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.chart.BarChart?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.LineChart?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ButtonBar?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.shape.Sphere?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="427.0" prefWidth="660.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <BarChart id="totstu_graph" layoutX="135.0" layoutY="37.0" prefHeight="266.0" prefWidth="310.0">
+        <xAxis>
+          <CategoryAxis side="BOTTOM" />
+        </xAxis>
+        <yAxis>
+          <NumberAxis side="LEFT" />
+        </yAxis>
+      </BarChart>
+      <LineChart id="Malestu_graph" layoutX="456.0" layoutY="14.0" prefHeight="183.0" prefWidth="84.0">
+        <xAxis>
+          <CategoryAxis side="BOTTOM" />
+        </xAxis>
+        <yAxis>
+          <NumberAxis side="LEFT" />
+        </yAxis>
+      </LineChart>
+      <LineChart id="Femalstu_graph" layoutX="456.0" layoutY="197.0" prefHeight="151.0" prefWidth="171.0">
+        <xAxis>
+          <CategoryAxis side="BOTTOM" />
+        </xAxis>
+        <yAxis>
+          <NumberAxis side="LEFT" />
+        </yAxis>
+      </LineChart>
+      <VBox layoutY="120.0" prefHeight="162.0" prefWidth="147.0">
+         <children>
+            <Button id="totstu_btn" mnemonicParsing="false" prefHeight="67.0" prefWidth="125.0" text="Total Enrolled Students" textAlignment="CENTER" wrapText="true" />
+            <Button id="malestu_btn" mnemonicParsing="false" prefHeight="73.0" prefWidth="126.0" text="EnrolledMale Students" textAlignment="CENTER" wrapText="true" />
+            <Button id="Femalstu_btn" mnemonicParsing="false" prefHeight="67.0" prefWidth="125.0" text="Enrolled Femal Students" textAlignment="CENTER" wrapText="true" />
+         </children>
+      </VBox>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="200.0" layoutX="69.0" layoutY="366.0" stroke="BLACK" strokeType="INSIDE" width="559.0" />
+      <Sphere layoutX="350.0" layoutY="391.0" radius="50" />
+      <ButtonBar layoutX="124.0" layoutY="366.0" prefHeight="61.0" prefWidth="445.0">
+         <buttons>
+            <Button id="stgrade_btn" alignment="CENTER" mnemonicParsing="false" text="grade st" />
+            <Button id="addst_btn" alignment="CENTER" mnemonicParsing="false" text="Add st" />
+            <Button id="home_btn" alignment="CENTER" mnemonicParsing="false" text="Home" />
+            <Button id="course_btn" alignment="CENTER" mnemonicParsing="false" text="Avail cour" />
+            <Button id="signout_btn" alignment="CENTER" mnemonicParsing="false" text="signout" />
+         </buttons>
+         <padding>
+            <Insets right="15.0" />
+         </padding>
+      </ButtonBar>
+   </children>
+</AnchorPane>
