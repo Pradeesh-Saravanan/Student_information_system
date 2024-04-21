@@ -3,6 +3,7 @@
 <!--<?import dist.lib.fontawesome.FontAwesomeIcon?>-->
 
 <?import java.lang.String?>
+<?import java.net.URL?>
 <?import javafx.scene.chart.AreaChart?>
 <?import javafx.scene.chart.BarChart?>
 <?import javafx.scene.chart.CategoryAxis?>
@@ -24,7 +25,7 @@
 
 <StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo.dashboardController">
    <children>
-      <AnchorPane fx:id="main_form" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: linear-gradient(to bottom right,cornflowerblue,lightcoral);">
+      <AnchorPane fx:id="main_form" prefHeight="200.0" prefWidth="200.0" stylesheets="@style.css">
          <children>
             <BorderPane layoutX="119.0" layoutY="55.0" prefHeight="600.0" prefWidth="1100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <top>
@@ -353,7 +354,7 @@
                                     <Button fx:id="availableCourse_deleteBtn" layoutX="162.0" layoutY="259.0" mnemonicParsing="false" onAction="#availableCourseDelete" prefHeight="41.0" prefWidth="85.0" styleClass="delete-btn" stylesheets="@dashboardDesign.css" text="Delete" />
                                  </children>
                               </AnchorPane>
-                              <AnchorPane layoutX="304.0" layoutY="19.0" prefHeight="517.0" prefWidth="579.0" style="-fx-background-color: black;" stylesheets="@dashboardDesign.css">
+                              <AnchorPane layoutX="304.0" layoutY="19.0" prefHeight="517.0" prefWidth="579.0">
                                  <styleClass>
                                     <String fx:value="shadow" />
                                     <String fx:value="white-bg" />
@@ -361,12 +362,16 @@
                                  <children>
                                     <TableView fx:id="availableCourse_tableView" layoutX="11.0" layoutY="13.0" onMouseClicked="#availableCourseSelect" prefHeight="490.0" prefWidth="557.0">
                                        <columns>
-                                          <TableColumn fx:id="availableCourse_col_course" prefWidth="79.0" text="Course" />
+                                          <TableColumn fx:id="availableCourse_col_course" prefWidth="75.0" text="Column" style="-fx-text-fill:red;"/>
                                           <TableColumn fx:id="availableCourse_col_description" prefWidth="214.0" text="Description" />
                                           <TableColumn fx:id="availableCourse_col_degree" prefWidth="262.0" text="Degree" />
                                        </columns>
                                     </TableView>
                                  </children>
+                                 <stylesheets>
+                                    <URL value="@dashboardDesign.css" />
+                                    <URL value="@style.css" />
+                                 </stylesheets>
                               </AnchorPane>
                            </children>
                         </AnchorPane>

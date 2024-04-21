@@ -1,0 +1,39 @@
+.button {
+    /*-fx-background-color: linear-gradient(to bottom, #3498db, #2980b9); /* Button background gradient */*/
+    -fx-background-color:blue;
+    -fx-text-fill: #ffffff; /* Button text color */
+    -fx-font-size: 14px; /* Button font size */
+    -fx-padding: 10px 20px; /* Button padding */
+    -fx-border-radius: 5px; /* Button border radius */
+    -fx-background-radius: 5px; /* Button background radius */
+    -fx-cursor: hand; /* Cursor on hover */
+    -fx-transition: -fx-background 0.3s; /* Transition duration and property */
+}
+
+.button:hover {
+    -fx-background-color: linear-gradient(to bottom, #2980b9, #3498db); /* Button background gradient on hover */
+}
+
+/* Apply to the root node of your Scene (e.g., StackPane, AnchorPane, etc.) */
+.root {
+    -fx-background-image: url('The-Lake-5-dragged.jpg');
+    -fx-background-size: cover; /* Cover the entire background */
+    -fx-background-position: center; /* Center the background */
+    -fx-background-repeat: no-repeat; /* Do not repeat the background */
+    -fx-alignment:center;
+}/* styles.css */
+
+.table-view {
+    -fx-background-color: #f0f0f0; /* Background color */
+    -fx-text-fill: #eb4034; /* Text color */
+    /* Add more styling properties as needed */
+}
+#availableCourse_col_course .table-column{
+-fx-background-color:transparent;
+-fx-text-fill: orange;
+}
+#availableCourse_col_course{
+    /* Background color */
+    -fx-text-fill: #eb4034;
+}
+

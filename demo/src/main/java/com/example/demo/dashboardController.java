@@ -49,28 +49,28 @@ import javafx.util.StringConverter;
  * SUBSCRIBE OUR YOUTUBE CHANNEL -> https://www.youtube.com/channel/UCPgcmw0LXToDn49akUEJBkQ
  * THANKS FOR YOUR SUPPORT : )
  */
-class courseData {
-
-    private String course;
-    private String description;
-    private String degree;
-
-    public courseData(String course, String description, String degree){
-        this.course = course;
-        this.description = description;
-        this.degree = degree;
-    }
-    public String getCourse(){
-        return course;
-    }
-    public String getDescription(){
-        return description;
-    }
-    public String getDegree(){
-        return degree;
-    }
-
-}
+//class courseData {
+//
+//    private String course;
+//    private String description;
+//    private String degree;
+//
+//    public courseData(String course, String description, String degree){
+//        this.course = course;
+//        this.description = description;
+//        this.degree = degree;
+//    }
+//    public String getCourse(){
+//        return course;
+//    }
+//    public String getDescription(){
+//        return description;
+//    }
+//    public String getDegree(){
+//        return degree;
+//    }
+//
+//}
 public class dashboardController implements Initializable {
 
     @FXML
