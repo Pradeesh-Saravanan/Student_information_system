@@ -12,10 +12,6 @@ import java.sql.*;
 
 //import static com.example.demo.database.connectDb;
 
-class getData{
-    static String username;
-    static String path;
-}
 //class database{
 //    public static Connection connectDb(){
 //        try {

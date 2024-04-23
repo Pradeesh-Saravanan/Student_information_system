@@ -44,33 +44,6 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.util.StringConverter;
 
-/**
- *
- * SUBSCRIBE OUR YOUTUBE CHANNEL -> https://www.youtube.com/channel/UCPgcmw0LXToDn49akUEJBkQ
- * THANKS FOR YOUR SUPPORT : )
- */
-//class courseData {
-//
-//    private String course;
-//    private String description;
-//    private String degree;
-//
-//    public courseData(String course, String description, String degree){
-//        this.course = course;
-//        this.description = description;
-//        this.degree = degree;
-//    }
-//    public String getCourse(){
-//        return course;
-//    }
-//    public String getDescription(){
-//        return description;
-//    }
-//    public String getDegree(){
-//        return degree;
-//    }
-//
-//}
 public class dashboardController implements Initializable {
 
     @FXML
@@ -158,10 +131,10 @@ public class dashboardController implements Initializable {
     private TextField addStudents_studentNum;
 
     @FXML
-    private ComboBox<?> addStudents_year;
+    private ComboBox<String> addStudents_year;
 
     @FXML
-    private ComboBox<?> addStudents_course;
+    private ComboBox<String> addStudents_course;
 
     @FXML
     private TextField addStudents_firstName;
@@ -173,10 +146,10 @@ public class dashboardController implements Initializable {
     private DatePicker addStudents_birth;
 
     @FXML
-    private ComboBox<?> addStudents_status;
+    private ComboBox<String> addStudents_status;
 
     @FXML
-    private ComboBox<?> addStudents_gender;
+    private ComboBox<String> addStudents_gender;
 
     @FXML
     private ImageView addStudents_imageView;
@@ -290,7 +263,7 @@ public class dashboardController implements Initializable {
 
     public void homeDisplayTotalEnrolledStudents() {
 
-        String sql = "SELECT COUNT(id) FROM student";
+        String sql = "SELECT COUNT(*) FROM student";
 
         connect = database.connectDb();
 
@@ -301,7 +274,7 @@ public class dashboardController implements Initializable {
             result = prepare.executeQuery();
 
             if (result.next()) {
-                countEnrolled = result.getInt("COUNT(id)");
+                countEnrolled = result.getInt("COUNT(*)");
             }
 
             home_totalEnrolled.setText(String.valueOf(countEnrolled));
@@ -314,7 +287,7 @@ public class dashboardController implements Initializable {
 
     public void homeDisplayFemaleEnrolled() {
 
-        String sql = "SELECT COUNT(id) FROM student WHERE gender = 'Female' and status = 'Enrolled'";
+        String sql = "SELECT COUNT(*) FROM student WHERE gender = 'Female' and status = 'Enrolled'";
 
         connect = database.connectDb();
 
@@ -325,7 +298,7 @@ public class dashboardController implements Initializable {
             result = prepare.executeQuery();
 
             if (result.next()) {
-                countFemale = result.getInt("COUNT(id)");
+                countFemale = result.getInt("count(*)");
             }
 
             home_totalFemale.setText(String.valueOf(countFemale));
@@ -338,7 +311,7 @@ public class dashboardController implements Initializable {
 
     public void homeDisplayMaleEnrolled() {
 
-        String sql = "SELECT COUNT(id) FROM student WHERE gender = 'Male' and status = 'Enrolled'";
+        String sql = "SELECT COUNT(*) FROM student WHERE gender = 'Male' and status = 'Enrolled'";
 
         connect = database.connectDb();
 
@@ -349,7 +322,7 @@ public class dashboardController implements Initializable {
             result = prepare.executeQuery();
 
             if (result.next()) {
-                countMale = result.getInt("COUNT(id)");
+                countMale = result.getInt("COUNT(*)");
             }
             home_totalMale.setText(String.valueOf(countMale));
 
@@ -415,7 +388,7 @@ public class dashboardController implements Initializable {
 
         home_totalMaleChart.getData().clear();
 
-        String sql = "SELECT date, COUNT(id) FROM student WHERE status = 'Enrolled' and gender = 'Male' GROUP BY date ORDER BY TIMESTAMP(date) ASC LIMIT 5";
+        String sql = "SELECT date, COUNT(if) FROM student WHERE status = 'Enrolled' and gender = 'Male' GROUP BY date ORDER BY TIMESTAMP(date) ASC LIMIT 5";
 
         connect = database.connectDb();
 
@@ -464,7 +437,7 @@ public class dashboardController implements Initializable {
                 alert.showAndWait();
             } else {
                 // CHECK IF THE STUDENTNUMBER IS ALREADY EXIST
-                String checkData = "SELECT studentNum FROM student WHERE studentNum = '"+ addStudents_studentNum.getText() + "'";
+                String checkData = "SELECT studentNum FROM student WHERE studentNum = '" + addStudents_studentNum.getText() + "'";
 
                 statement = connect.createStatement();
                 result = statement.executeQuery(checkData);
@@ -547,7 +520,6 @@ public class dashboardController implements Initializable {
                     addStudentsClear();
                 }
             }
-
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -573,21 +545,22 @@ public class dashboardController implements Initializable {
 
         try {
             Alert alert;
-            if (addStudents_studentNum.getText().isEmpty()
-                    || addStudents_year.getSelectionModel().getSelectedItem() == null
-                    || addStudents_course.getSelectionModel().getSelectedItem() == null
-                    || addStudents_firstName.getText().isEmpty()
-                    || addStudents_lastName.getText().isEmpty()
-                    || addStudents_gender.getSelectionModel().getSelectedItem() == null
-                    || addStudents_birth.getValue() == null
-                    || addStudents_status.getSelectionModel().getSelectedItem() == null
-                    || getData.path == null || getData.path == "") {
-                alert = new Alert(AlertType.ERROR);
-                alert.setTitle("Error Message");
-                alert.setHeaderText(null);
-                alert.setContentText("Please fill all blank fields");
-                alert.showAndWait();
-            } else {
+//            if (
+//                    addStudents_studentNum.getText().isEmpty()
+//                    || addStudents_year.getSelectionModel().getSelectedItem() == null
+////                    || addStudents_course.getSelectionModel().getSelectedItem() == null
+//                     || addStudents_firstName.getText().isEmpty()
+////                    || addStudents_lastName.getText().isEmpty()
+////                    || addStudents_gender.getSelectionModel().getSelectedItem() == null
+////                    || addStudents_birth.getValue() == null
+////                    || addStudents_status.getSelectionModel().getSelectedItem() == null
+//            ){
+//                alert = new Alert(AlertType.ERROR);
+//                alert.setTitle("Error Message");
+//                alert.setHeaderText(null);
+//                alert.setContentText("Please fill all blank fields");
+//                alert.showAndWait();
+//            } else {
 
                 alert = new Alert(AlertType.CONFIRMATION);
                 alert.setTitle("Confirmation Message");
@@ -607,13 +580,14 @@ public class dashboardController implements Initializable {
 
                     // TO UPDATE THE TABLEVIEW
                     addStudentsShowListData();
+                    addStudentsSelect();
                     // TO CLEAR THE FIELDS
                     addStudentsClear();
 
                 } else {
                     return;
                 }
-            }
+//            }
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -628,21 +602,21 @@ public class dashboardController implements Initializable {
 
         try {
             Alert alert;
-            if (addStudents_studentNum.getText().isEmpty()
-                    || addStudents_year.getSelectionModel().getSelectedItem() == null
-                    || addStudents_course.getSelectionModel().getSelectedItem() == null
-                    || addStudents_firstName.getText().isEmpty()
-                    || addStudents_lastName.getText().isEmpty()
-                    || addStudents_gender.getSelectionModel().getSelectedItem() == null
-                    || addStudents_birth.getValue() == null
-                    || addStudents_status.getSelectionModel().getSelectedItem() == null
-                    || getData.path == null || getData.path == "") {
-                alert = new Alert(AlertType.ERROR);
-                alert.setTitle("Error Message");
-                alert.setHeaderText(null);
-                alert.setContentText("Please fill all blank fields");
-                alert.showAndWait();
-            } else {
+//            if (addStudents_studentNum.getText().isEmpty()
+//                    || addStudents_year.getSelectionModel().getSelectedItem() == null
+//                    || addStudents_course.getSelectionModel().getSelectedItem() == null
+//                    || addStudents_firstName.getText().isEmpty()
+//                    || addStudents_lastName.getText().isEmpty()
+//                    || addStudents_gender.getSelectionModel().getSelectedItem() == null
+//                    || addStudents_birth.getValue() == null
+//                    || addStudents_status.getSelectionModel().getSelectedItem() == null
+//                    || getData.path == null || getData.path == "") {
+//                alert = new Alert(AlertType.ERROR);
+//                alert.setTitle("Error Message");
+//                alert.setHeaderText(null);
+//                alert.setContentText("Please fill all blank fields");
+//                alert.showAndWait();
+//            } else {
                 alert = new Alert(AlertType.CONFIRMATION);
                 alert.setTitle("Confirmation Message");
                 alert.setHeaderText(null);
@@ -686,7 +660,7 @@ public class dashboardController implements Initializable {
                     return;
                 }
 
-            }
+//            }
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -695,13 +669,13 @@ public class dashboardController implements Initializable {
 
     public void addStudentsClear() {
         addStudents_studentNum.setText("");
-        addStudents_year.getSelectionModel().clearSelection();
-        addStudents_course.getSelectionModel().clearSelection();
+        addStudents_year.setPromptText("");
+        addStudents_course.setPromptText("");
         addStudents_firstName.setText("");
         addStudents_lastName.setText("");
-        addStudents_gender.getSelectionModel().clearSelection();
+        addStudents_gender.setPromptText("");
         addStudents_birth.setValue(null);
-        addStudents_status.getSelectionModel().clearSelection();
+        addStudents_status.setPromptText("");
         addStudents_imageView.setImage(null);
 
         getData.path = "";
@@ -898,6 +872,10 @@ public class dashboardController implements Initializable {
         addStudents_studentNum.setText(String.valueOf(studentD.getStudentNum()));
         addStudents_firstName.setText(studentD.getFirstName());
         addStudents_lastName.setText(studentD.getLastName());
+        addStudents_year.setValue(String.valueOf(studentD.getYear()));
+        addStudents_course.setValue(String.valueOf(studentD.getCourse()));
+        addStudents_gender.setValue(String.valueOf(studentD.getGender()));
+        addStudents_status.setValue(String.valueOf(studentD.getStatus()));
         addStudents_birth.setValue(LocalDate.parse(String.valueOf(studentD.getBirth())));
 
         String uri = "file:" + studentD.getImage();
@@ -957,6 +935,7 @@ public class dashboardController implements Initializable {
                     // TO BECOME UPDATED OUR TABLEVIEW ONCE THE DATA WE GAVE SUCCESSFUL
                     availableCourseShowListData();
                     // TO CLEAR THE TEXT FIELDS
+
                     availableCourseClear();
 
                 }
@@ -1078,7 +1057,6 @@ public class dashboardController implements Initializable {
         availableCourse_description.setText("");
         availableCourse_degree.setText("");
     }
-
     public ObservableList<courseData> availableCourseListData() {
 
         ObservableList<courseData> listData = FXCollections.observableArrayList();
@@ -1112,15 +1090,17 @@ public class dashboardController implements Initializable {
         availableCourseList = availableCourseListData();
 //        TableRow row = (TableRow) availableCourse_tableView.getRowFactory();
 //        row.setStyle("-fx-background-color:black");
-        availableCourse_tableView.setStyle("-fx-text-color:black");
+//        availableCourse_tableView.setStyle("-fx-text-color:black");
         availableCourse_col_course.setCellValueFactory(new PropertyValueFactory<>("course"));
         availableCourse_col_description.setCellValueFactory(new PropertyValueFactory<>("description"));
         availableCourse_col_degree.setCellValueFactory(new PropertyValueFactory<>("degree"));
 //        availableCourse_col_course.setStyle("-fx-background-color:linear-gradient(to bottom right, #3f82ae, #26bf7d);");
+        availableCourse_tableView.setEditable(true);
         availableCourse_tableView.setItems(availableCourseList);
 
 
     }
+
 
     public void availableCourseSelect() {
         courseData courseD = availableCourse_tableView.getSelectionModel().getSelectedItem();
@@ -1161,29 +1141,29 @@ public class dashboardController implements Initializable {
                 finalResult = 0;
             } else { //LIKE (X+Y)/2 AVE WE NEED TO FIND FOR FINALS
                 finalResult = (Double.parseDouble(studentGrade_firstSem.getText())
-                        + Double.parseDouble(studentGrade_secondSem.getText()) / 2);
+                        + Double.parseDouble(studentGrade_secondSem.getText()))/2;
             }
 
             String updateData = "UPDATE student_grade SET "
-                    + " year = '" + studentGradeyear.getText()
-                    + "', course = '" + studentGradecourse.getText()
-                    + "', first_sem = '" + studentGrade_firstSem.getText()
+//                    + " year = '" + studentGradeyear.getText()
+//                    + "', course = '" + studentGradecourse.getText()
+                    + " first_sem = '" + studentGrade_firstSem.getText()
                     + "', second_sem = '" + studentGrade_secondSem.getText()
                     + "', final = '" + finalResult + "' WHERE studentNum = '"
                     + studentGrade_studentNum.getText() + "'";
 
             Alert alert;
 
-            if (studentGrade_studentNum.getText().isEmpty()
-                    || studentGradeyear.getText().isEmpty()
-                    || studentGradecourse.getText().isEmpty()) {
-                alert = new Alert(AlertType.ERROR);
-                alert.setTitle("Error Message");
-                alert.setHeaderText(null);
-                alert.setContentText("Please fill all blank fields");
-                alert.showAndWait();
-
-            } else {
+//            if (studentGrade_studentNum.getText().isEmpty()
+//                    || studentGradeyear.getText().isEmpty()
+//                    || studentGradecourse.getText().isEmpty()) {
+//                alert = new Alert(AlertType.ERROR);
+//                alert.setTitle("Error Message");
+//                alert.setHeaderText(null);
+//                alert.setContentText("Please fill all blank fields");
+//                alert.showAndWait();
+//
+//            } else {
 
                 alert = new Alert(AlertType.CONFIRMATION);
                 alert.setTitle("Confirmation Message");
@@ -1207,7 +1187,8 @@ public class dashboardController implements Initializable {
                     return;
                 }
 
-            }// NOT WE ARE CLOSER TO THE ENDING PART  :) LETS PROCEED TO DASHBOARD FORM
+//            }
+        // NOT WE ARE CLOSER TO THE ENDING PART  :) LETS PROCEED TO DASHBOARD FORM
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -1215,9 +1196,9 @@ public class dashboardController implements Initializable {
 
     public void studentGradesClear() {
         studentGrade_studentNum.setText("");
-        studentGradeyear.setText("");
-        studentGradecourse.setText("");
-        studentGrade_firstSem.setText("");
+//        studentGradeyear.setText("");
+//        studentGradecourse.setText("");
+        studentGrade_firstSem.setText(String.valueOf(""));
         studentGrade_secondSem.setText("");
     }
 
@@ -1278,8 +1259,8 @@ public class dashboardController implements Initializable {
         }
 
         studentGrade_studentNum.setText(String.valueOf(studentD.getStudentNum()));
-        studentGradeyear.setText(studentD.getYear());
-        studentGradecourse.setText(studentD.getCourse());
+//        studentGradeyear.setText(studentD.getYear());
+//        studentGradecourse.setText(studentD.getCourse());
         studentGrade_firstSem.setText(String.valueOf(studentD.getFirstSem()));
         studentGrade_secondSem.setText(String.valueOf(studentD.getSecondSem()));
     }
@@ -1383,7 +1364,7 @@ public class dashboardController implements Initializable {
     // THATS IT FOR THESE VIDEOS, THANKS FOR WATCHING!! SUBSCRIBE AND TURN ON NOTIFICATION
 //    TO NOTIF YOU FOR MORE UPCOMING VIDEOS THANKS FOR THE SUPPORT! : )
     public void defaultNav(){
-        home_btn.setStyle("-fx-background-color:linear-gradient(to bottom right, #3f82ae, #26bf7d);");
+        home_btn.setStyle("-fx-background-color:linear-gradient(to bottom right, cornflowerblue,black);");
     }
 
     public void switchForm(ActionEvent event) {
@@ -1393,7 +1374,7 @@ public class dashboardController implements Initializable {
             availableCourse_form.setVisible(false);
             studentGrade_form.setVisible(false);
 
-            home_btn.setStyle("-fx-background-color:linear-gradient(to bottom right, #3f82ae, #26bf7d);");
+            home_btn.setStyle("-fx-background-color:linear-gradient(to bottom right, cornflowerblue, black);");
             addStudents_btn.setStyle("-fx-background-color:transparent");
             availableCourse_btn.setStyle("-fx-background-color:transparent");
             studentGrade_btn.setStyle("-fx-background-color:transparent");
@@ -1411,7 +1392,7 @@ public class dashboardController implements Initializable {
             availableCourse_form.setVisible(false);
             studentGrade_form.setVisible(false);
 
-            addStudents_btn.setStyle("-fx-background-color:linear-gradient(to bottom right, #3f82ae, #26bf7d);");
+            addStudents_btn.setStyle("-fx-background-color:linear-gradient(to bottom right, cornflowerblue,black);");
             home_btn.setStyle("-fx-background-color:transparent");
             availableCourse_btn.setStyle("-fx-background-color:transparent");
             studentGrade_btn.setStyle("-fx-background-color:transparent");
@@ -1430,7 +1411,7 @@ public class dashboardController implements Initializable {
             availableCourse_form.setVisible(true);
             studentGrade_form.setVisible(false);
 //           availableCourse_tableView.setStyle("-fx-background-color:linear-gradient(to bottom right, #3f82ae, #26bf7d);");
-            availableCourse_btn.setStyle("-fx-background-color:linear-gradient(to bottom right, #3f82ae, #26bf7d);");
+            availableCourse_btn.setStyle("-fx-background-color:linear-gradient(to bottom right, cornflowerblue, black);");
             addStudents_btn.setStyle("-fx-background-color:transparent");
             home_btn.setStyle("-fx-background-color:transparent");
             studentGrade_btn.setStyle("-fx-background-color:transparent");
@@ -1443,7 +1424,7 @@ public class dashboardController implements Initializable {
             availableCourse_form.setVisible(false);
             studentGrade_form.setVisible(true);
 
-            studentGrade_btn.setStyle("-fx-background-color:linear-gradient(to bottom right, #3f82ae, #26bf7d);");
+            studentGrade_btn.setStyle("-fx-background-color:linear-gradient(to bottom right, cornflowerblue,black);");
             addStudents_btn.setStyle("-fx-background-color:transparent");
             availableCourse_btn.setStyle("-fx-background-color:transparent");
             home_btn.setStyle("-fx-background-color:transparent");
