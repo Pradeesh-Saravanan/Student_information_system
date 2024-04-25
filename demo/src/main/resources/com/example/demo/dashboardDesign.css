@@ -3,49 +3,57 @@
     -fx-border-color:#000;
     -fx-border-width:.4px .4px .2px .4px;
 }
+#main_form,#back{
+    -fx-background-radius:20px;
+    -fx-border-radius:20px;
+ }
+#minimize,#close{
+    -fx-background-radius:40%;
+    -fx-background-color:rgba(255,255,255,0.2);
+}
+.glass,#availableCourse_tableView{
+    -fx-background-color:rgba(255,255,255,0.4);
+    -fx-background-radius:10px;
+}
+.glass_dark{
+    -fx-background-color:rgba(0,0,0,0.1);
+    -fx-background-radius:10px;
+}
 #addStudents_form{
     -fx-background-image: url('lake.jpg');
+}
+#home_form,
+#addStudents_form,
+#availableCourse_form,
+#studentGrade_form{
+    -fx-background-image : url("lake.jpg");
+
 }
 #background1{
     -fx-background-color: rgba(255, 255, 255, 0.3);
 }
 .table-view {
-    -fx-background-color: rgba(0, 0, 0, 0.74);
+    -fx-background-color: rgba(255,255,255, 0.74);
 }
 .semi-top-form{
     -fx-background-color:#efefef;
     -fx-border-color:#000;
     -fx-border-width:.2px .4px .4px .4px;
 }
-.close{
-    -fx-background-color:transparent;
-    -fx-cursor:hand;
-}
-.close:hover{
-    -fx-background-color:#fb3d63;
-}
-.minimize{
-    -fx-background-color:transparent;
-    -fx-cursor:hand;
-}
-.minimize:hover{
-    -fx-background-color:#ddd;
-}
 .nav-form{
     -fx-background-color:linear-gradient(to bottom right, cornflowerblue, black);
 }
 .nav-btn{
     -fx-background-color:transparent;
-    -fx-cursor:hand;
+    -fx-margin-bottom:5%;
     -fx-text-fill:#fff;
     -fx-font-size:15px;
     -fx-font-family:"Arial";
     -fx-alignment:CENTER-LEFT;
 }
 .logout{
-    -fx-background-color:#2c84bf;
-    -fx-background-radius:10px;
-    -fx-cursor:hand;
+    -fx-background-color:rgba(255,255,255,0.4);
+    -fx-background-radius:40%;
 }
 .logout:hover{
     -fx-background-color:#1593e7;
@@ -59,24 +67,12 @@
 }
 .card{
     -fx-background-color:linear-gradient(to right, cornflowerblue, black);
-    -fx-background-radius:4px;
-}
-.search{
-    -fx-background-color:transparent;
-    -fx-border-color:linear-gradient(to bottom right, cornflowerblue, black);
-    -fx-border-width:.8px;
-    -fx-border-radius:8px;
-    -fx-font-family:"Tahoma";
-    -fx-font-size:14px;
-    -fx-padding:0px 0px 0px 28px;
-}
-.search:focused{
-    -fx-border-width:1.8px;
+    -fx-background-radius:10px;
 }
 .table-view{
     -fx-background-color:transparent;
     -fx-padding:0px;
-    -fx-border-color:linear-gradient(to bottom right, #2d658c, #2ca772);
+
     -fx-border-width:2px;
     -fx-border-radius:8px;
 }
@@ -99,7 +95,6 @@
 .textfield{
     -fx-background-color:linear-gradient(to bottom, #efefef, #eee);
     -fx-background-radius:4px;
-    -fx-border-color:linear-gradient(to bottom right, cornflowerblue, black);
     -fx-border-width:.8px;
     -fx-font-family:"Tahoma";
     -fx-border-radius:4px;
@@ -108,9 +103,13 @@
     -fx-background-color:#fff;
     -fx-border-width:1px;
 }
+
+#QRImage{
+    -fx-background-radius:10px;
+}
 .insert-btn{
     -fx-background-color:transparent;
-    -fx-text-fill:red;
+    -fx-text-fill:white;
     -fx-font-size:14px;
     -fx-font-family:"Arial";
     -fx-cursor:hand;
@@ -156,13 +155,10 @@
     -fx-font-size:14px;
     -fx-font-family:"Arial";
 }
-.clear-btn:hover{
-    -fx-border-color:linear-gradient(to bottom right, cornflowerblue, black);
-}
+
 .label-info{
     -fx-background-color:#fff;
     -fx-background-radius:4px;
-    -fx-border-color:linear-gradient(to bottom right, cornflowerblue, black);
     -fx-border-width:.8px;
     -fx-font-family:"Tahoma";
     -fx-border-radius:4px;
