@@ -1,0 +1,39 @@
+.root {
+    -fx-background-image: url('lake.jpg');
+    -fx-background-size: cover;
+}
+
+.anchor-pane {
+    -fx-background-color: #98ff98; /* grass green color */
+    -fx-background-radius: 10px; /* rounded corners */
+    -fx-padding: 20px;
+    -fx-alignment: center;
+}
+
+.text-field {
+    -fx-background-color: rgba(255, 255, 255, 0.5); /* 50% transparent white */
+    -fx-background-radius: 5px; /* rounded corners */
+    -fx-padding: 10px;
+    -fx-alignment: center;
+}
+
+.button {
+    -fx-background-color: linear-gradient(#4eff4e, #1aff1a); /* gradient color */
+    -fx-background-radius: 5px; /* rounded corners */
+    -fx-padding: 10px 20px;
+    -fx-text-fill: white; /* text color */
+    -fx-border-radius: 5px;
+    -fx-border-color: transparent;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.5), 10, 0, 0, 0); /* shadow effect */
+    -fx-transition: all 0.3s;
+}
+
+.button:hover {
+    -fx-background-color: linear-gradient(#1aff1a, #4eff4e); /* gradient color change on hover */
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.8), 10, 0, 0, 0); /* shadow effect on hover */
+}
+
+.slider {
+    -fx-padding: 10px;
+    -fx-alignment: center;
+}

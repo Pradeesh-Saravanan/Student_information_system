@@ -4,7 +4,11 @@
  * and open the template in the editor.
  */
 package com.example.demo;
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -17,6 +21,11 @@ import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
+
+import com.google.zxing.WriterException;
+import com.google.zxing.client.j2se.MatrixToImageWriter;
+import com.google.zxing.common.BitMatrix;
+import com.google.zxing.qrcode.QRCodeWriter;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
@@ -43,6 +52,12 @@ import javafx.stage.FileChooser.ExtensionFilter;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.util.StringConverter;
+
+
+import javax.imageio.ImageIO;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 public class dashboardController implements Initializable {
 
@@ -85,14 +100,6 @@ public class dashboardController implements Initializable {
     @FXML
     private Label home_totalMale;
 
-    @FXML
-    private BarChart<?, ?> home_totalEnrolledChart;
-
-    @FXML
-    private AreaChart<?, ?> home_totalFemaleChart;
-
-    @FXML
-    private LineChart<?, ?> home_totalMaleChart;
 
     @FXML
     private AnchorPane addStudents_form;
@@ -153,6 +160,9 @@ public class dashboardController implements Initializable {
 
     @FXML
     private ImageView addStudents_imageView;
+
+    @FXML
+    private ImageView QRImage;
 
     @FXML
     private Button addStudents_insertBtn;
@@ -261,6 +271,23 @@ public class dashboardController implements Initializable {
 
     private Image image;
 
+
+    private Image generateQRCodeImage(String data) throws WriterException, IOException {
+        QRCodeWriter qrCodeWriter = new QRCodeWriter();
+        BitMatrix bitMatrix = qrCodeWriter.encode(data, com.google.zxing.BarcodeFormat.QR_CODE, 300, 300);
+
+        // Convert BitMatrix to BufferedImage
+        BufferedImage bufferedImage = MatrixToImageWriter.toBufferedImage(bitMatrix);
+
+        // Convert BufferedImage to Image
+        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+        ImageIO.write(bufferedImage, "png", byteArrayOutputStream);
+        byteArrayOutputStream.flush();
+        ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(byteArrayOutputStream.toByteArray());
+
+        return new Image(byteArrayInputStream);
+    }
+
     public void homeDisplayTotalEnrolledStudents() {
 
         String sql = "SELECT COUNT(*) FROM student";
@@ -331,85 +358,6 @@ public class dashboardController implements Initializable {
         }
 
     }
-
-    public void homeDisplayTotalEnrolledChart() {
-
-        home_totalEnrolledChart.getData().clear();
-
-        String sql = "SELECT date, COUNT(id) FROM student WHERE status = 'Enrolled' GROUP BY date ORDER BY TIMESTAMP(date) ASC LIMIT 5";
-
-        connect = database.connectDb();
-
-        try {
-            XYChart.Series chart = new XYChart.Series();
-
-            prepare = connect.prepareStatement(sql);
-            result = prepare.executeQuery();
-
-            while (result.next()) {
-                chart.getData().add(new XYChart.Data(result.getString(1), result.getInt(2)));
-            }
-
-            home_totalEnrolledChart.getData().add(chart);
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-    }
-
-    public void homeDisplayFemaleEnrolledChart() {
-
-        home_totalFemaleChart.getData().clear();
-
-        String sql = "SELECT date, COUNT(id) FROM student WHERE status = 'Enrolled' and gender = 'Female' GROUP BY date ORDER BY TIMESTAMP(date) ASC LIMIT 5";
-
-        connect = database.connectDb();
-
-        try {
-            XYChart.Series chart = new XYChart.Series();
-
-            prepare = connect.prepareStatement(sql);
-            result = prepare.executeQuery();
-
-            while (result.next()) {
-                chart.getData().add(new XYChart.Data(result.getString(1), result.getInt(2)));
-            }
-
-            home_totalFemaleChart.getData().add(chart);
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-    }
-
-    public void homeDisplayEnrolledMaleChart() {
-
-        home_totalMaleChart.getData().clear();
-
-        String sql = "SELECT date, COUNT(if) FROM student WHERE status = 'Enrolled' and gender = 'Male' GROUP BY date ORDER BY TIMESTAMP(date) ASC LIMIT 5";
-
-        connect = database.connectDb();
-
-        try {
-            XYChart.Series chart = new XYChart.Series();
-
-            prepare = connect.prepareStatement(sql);
-            result = prepare.executeQuery();
-
-            while (result.next()) {
-                chart.getData().add(new XYChart.Data(result.getString(1), result.getInt(2)));
-            }
-
-            home_totalMaleChart.getData().add(chart);
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-    }
-
     public void addStudentsAdd() {
 
         String insertData = "INSERT INTO student "
@@ -562,31 +510,31 @@ public class dashboardController implements Initializable {
 //                alert.showAndWait();
 //            } else {
 
-                alert = new Alert(AlertType.CONFIRMATION);
-                alert.setTitle("Confirmation Message");
+            alert = new Alert(AlertType.CONFIRMATION);
+            alert.setTitle("Confirmation Message");
+            alert.setHeaderText(null);
+            alert.setContentText("Are you sure you want to UPDATE Student #" + addStudents_studentNum.getText() + "?");
+            Optional<ButtonType> option = alert.showAndWait();
+
+            if (option.get().equals(ButtonType.OK)) {
+                statement = connect.createStatement();
+                statement.executeUpdate(updateData);
+
+                alert = new Alert(AlertType.INFORMATION);
+                alert.setTitle("Information Message");
                 alert.setHeaderText(null);
-                alert.setContentText("Are you sure you want to UPDATE Student #" + addStudents_studentNum.getText() + "?");
-                Optional<ButtonType> option = alert.showAndWait();
+                alert.setContentText("Successfully Updated!");
+                alert.showAndWait();
 
-                if (option.get().equals(ButtonType.OK)) {
-                    statement = connect.createStatement();
-                    statement.executeUpdate(updateData);
+                // TO UPDATE THE TABLEVIEW
+                addStudentsShowListData();
+                addStudentsSelect();
+                // TO CLEAR THE FIELDS
+                addStudentsClear();
 
-                    alert = new Alert(AlertType.INFORMATION);
-                    alert.setTitle("Information Message");
-                    alert.setHeaderText(null);
-                    alert.setContentText("Successfully Updated!");
-                    alert.showAndWait();
-
-                    // TO UPDATE THE TABLEVIEW
-                    addStudentsShowListData();
-                    addStudentsSelect();
-                    // TO CLEAR THE FIELDS
-                    addStudentsClear();
-
-                } else {
-                    return;
-                }
+            } else {
+                return;
+            }
 //            }
         } catch (Exception e) {
             e.printStackTrace();
@@ -617,48 +565,48 @@ public class dashboardController implements Initializable {
 //                alert.setContentText("Please fill all blank fields");
 //                alert.showAndWait();
 //            } else {
-                alert = new Alert(AlertType.CONFIRMATION);
-                alert.setTitle("Confirmation Message");
-                alert.setHeaderText(null);
-                alert.setContentText("Are you sure you want to DELETE Student #" + addStudents_studentNum.getText() + "?");
+            alert = new Alert(AlertType.CONFIRMATION);
+            alert.setTitle("Confirmation Message");
+            alert.setHeaderText(null);
+            alert.setContentText("Are you sure you want to DELETE Student #" + addStudents_studentNum.getText() + "?");
 
-                Optional<ButtonType> option = alert.showAndWait();
+            Optional<ButtonType> option = alert.showAndWait();
 
-                if (option.get().equals(ButtonType.OK)) {
+            if (option.get().equals(ButtonType.OK)) {
+
+                statement = connect.createStatement();
+                statement.executeUpdate(deleteData);
+
+                String checkData = "SELECT studentNum FROM student_grade "
+                        + "WHERE studentNum = '" + addStudents_studentNum.getText() + "'";
+
+                prepare = connect.prepareStatement(checkData);
+                result = prepare.executeQuery();
+
+                // IF THE STUDENT NUMBER IS EXIST THEN PROCEED TO DELETE
+                if (result.next()) {
+                    String deleteGrade = "DELETE FROM student_grade WHERE "
+                            + "studentNum = '" + addStudents_studentNum.getText() + "'";
 
                     statement = connect.createStatement();
-                    statement.executeUpdate(deleteData);
+                    statement.executeUpdate(deleteGrade);
 
-                    String checkData = "SELECT studentNum FROM student_grade "
-                            + "WHERE studentNum = '" + addStudents_studentNum.getText() + "'";
+                }// IF NOT THEN NVM
 
-                    prepare = connect.prepareStatement(checkData);
-                    result = prepare.executeQuery();
+                alert = new Alert(AlertType.INFORMATION);
+                alert.setTitle("Information Message");
+                alert.setHeaderText(null);
+                alert.setContentText("Successfully Deleted!");
+                alert.showAndWait();
 
-                    // IF THE STUDENT NUMBER IS EXIST THEN PROCEED TO DELETE
-                    if (result.next()) {
-                        String deleteGrade = "DELETE FROM student_grade WHERE "
-                                + "studentNum = '" + addStudents_studentNum.getText() + "'";
+                // TO UPDATE THE TABLEVIEW
+                addStudentsShowListData();
+                // TO CLEAR THE FIELDS
+                addStudentsClear();
 
-                        statement = connect.createStatement();
-                        statement.executeUpdate(deleteGrade);
-
-                    }// IF NOT THEN NVM
-
-                    alert = new Alert(AlertType.INFORMATION);
-                    alert.setTitle("Information Message");
-                    alert.setHeaderText(null);
-                    alert.setContentText("Successfully Deleted!");
-                    alert.showAndWait();
-
-                    // TO UPDATE THE TABLEVIEW
-                    addStudentsShowListData();
-                    // TO CLEAR THE FIELDS
-                    addStudentsClear();
-
-                } else {
-                    return;
-                }
+            } else {
+                return;
+            }
 
 //            }
         } catch (Exception e) {
@@ -742,38 +690,32 @@ public class dashboardController implements Initializable {
 
     }
 
-    private String[] yearList = {"First Year", "Second Year", "Third Year", "Fourth Year"};
+//    private String[] yearList = {"First Year", "Second Year", "Third Year", "Fourth Year"};
 
     public void addStudentsYearList() {
 
-        List<String> yearL = new ArrayList<>();
-
-        for (String data : yearList) {
-            yearL.add(data);
-        }
-
-        ObservableList ObList = FXCollections.observableArrayList(yearL);
-        addStudents_year.setItems(ObList);
+//        List<String> yearL = new ArrayList<>();
+//        ObservableList ObList = FXCollections.observableArrayList();
+//        for (String data : yearList) {
+//            ObList.add(data);
+//        }
+//        addStudents_year.setItems(ObList);
+        addStudents_year.getItems().addAll("First Year", "Second Year", "Third Year", "Fourth Year");
 
     }
-
     public void addStudentsCourseList() {
-
         String listCourse = "SELECT * FROM course";
-
         connect = database.connectDb();
-
         try {
-
-            ObservableList listC = FXCollections.observableArrayList();
+//            ObservableList<String> listC = FXCollections.observableArrayList();
 
             prepare = connect.prepareStatement(listCourse);
             result = prepare.executeQuery();
 
             while (result.next()) {
-                listC.add(result.getString("course"));
+                addStudents_course.getItems().addAll(result.getString("course"));
             }
-            addStudents_course.setItems(listC);
+//            addStudents_course.setItems(listC);
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -781,30 +723,30 @@ public class dashboardController implements Initializable {
 
     }
 
-    private String[] genderList = {"Male", "Female", "Others"};
+//    private String[] genderList = {"Male", "Female", "Others"};
 
     public void addStudentsGenderList() {
-        List<String> genderL = new ArrayList<>();
-
-        for (String data : genderList) {
-            genderL.add(data);
-        }
-
-        ObservableList ObList = FXCollections.observableArrayList(genderL);
-        addStudents_gender.setItems(ObList);
+//        List<String> genderL = new ArrayList<>();
+//        ObservableList ObList = FXCollections.observableArrayList();
+//        for (String data : genderList) {
+//            ObList.add(data);
+//        }
+//
+//
+//        addStudents_gender.setItems(ObList);
+        addStudents_gender.getItems().addAll("Male", "Female", "Others");
     }
 
     private String[] statusList = {"Enrolled", "Not Enrolled", "Inactive"};
 
     public void addStudentsStatusList() {
-        List<String> statusL = new ArrayList<>();
-
-        for (String data : statusList) {
-            statusL.add(data);
-        }
-
-        ObservableList ObList = FXCollections.observableArrayList(statusL);
-        addStudents_status.setItems(ObList);
+//        List<String> statusL = new ArrayList<>();
+//        ObservableList ObList = FXCollections.observableArrayList();
+//        for (String data : statusList) {
+//            ObList.add(data);
+//        }
+//        addStudents_status.setItems(ObList);
+        addStudents_status.getItems().addAll("Enrolled", "Not Enrolled", "Inactive");
     }
 
     //    NOW WE NEED THE COURSE, SO LETS WORK NOW THE AVAILABLE COURSE FORM : )
@@ -860,31 +802,39 @@ public class dashboardController implements Initializable {
 
     }
 
-    public void addStudentsSelect() {
-
+    public void addStudentsSelect() throws IOException, WriterException {
         studentData studentD = addStudents_tableView.getSelectionModel().getSelectedItem();
         int num = addStudents_tableView.getSelectionModel().getSelectedIndex();
-
         if ((num - 1) < -1) {
             return;
         }
-
         addStudents_studentNum.setText(String.valueOf(studentD.getStudentNum()));
         addStudents_firstName.setText(studentD.getFirstName());
         addStudents_lastName.setText(studentD.getLastName());
-        addStudents_year.setValue(String.valueOf(studentD.getYear()));
-        addStudents_course.setValue(String.valueOf(studentD.getCourse()));
-        addStudents_gender.setValue(String.valueOf(studentD.getGender()));
-        addStudents_status.setValue(String.valueOf(studentD.getStatus()));
+        addStudents_year.setValue(studentD.getYear());
+        addStudents_course.setValue(studentD.getCourse());
+        addStudents_gender.setValue(studentD.getGender());
+        addStudents_status.setValue(studentD.getStatus());
         addStudents_birth.setValue(LocalDate.parse(String.valueOf(studentD.getBirth())));
-
         String uri = "file:" + studentD.getImage();
-
         image = new Image(uri, 120, 149, false, true);
         addStudents_imageView.setImage(image);
-
         getData.path = studentD.getImage();
 
+        String data = "Reg no: " + addStudents_studentNum.getText() +
+                "\nYear: '" + addStudents_year.getSelectionModel().getSelectedItem()
+                + "'\nCourse = '" + addStudents_course.getSelectionModel().getSelectedItem()
+                + "\nFirstName = '" + addStudents_firstName.getText()
+                + "\nLastName = '" + addStudents_lastName.getText()
+                + "\nGender = '" + addStudents_gender.getSelectionModel().getSelectedItem()
+                + "\nBirth = '" + addStudents_birth.getValue()
+                + "\nStatus = '" + addStudents_status.getSelectionModel().getSelectedItem();
+
+
+
+        Image image2 = generateQRCodeImage(data);
+
+        QRImage.setImage(image2);
     }
 
     public void availableCourseAdd() {
@@ -1165,30 +1115,30 @@ public class dashboardController implements Initializable {
 //
 //            } else {
 
-                alert = new Alert(AlertType.CONFIRMATION);
-                alert.setTitle("Confirmation Message");
+            alert = new Alert(AlertType.CONFIRMATION);
+            alert.setTitle("Confirmation Message");
+            alert.setHeaderText(null);
+            alert.setContentText("Are you sure you want to UPDATE Student #" + studentGrade_studentNum.getText() + "?");
+            Optional<ButtonType> option = alert.showAndWait();
+
+            if (option.get().equals(ButtonType.OK)) {
+                statement = connect.createStatement();
+                statement.executeUpdate(updateData);
+
+                alert = new Alert(AlertType.INFORMATION);
+                alert.setTitle("Information Message");
                 alert.setHeaderText(null);
-                alert.setContentText("Are you sure you want to UPDATE Student #" + studentGrade_studentNum.getText() + "?");
-                Optional<ButtonType> option = alert.showAndWait();
+                alert.setContentText("Successfully Updated!");
+                alert.showAndWait();
 
-                if (option.get().equals(ButtonType.OK)) {
-                    statement = connect.createStatement();
-                    statement.executeUpdate(updateData);
-
-                    alert = new Alert(AlertType.INFORMATION);
-                    alert.setTitle("Information Message");
-                    alert.setHeaderText(null);
-                    alert.setContentText("Successfully Updated!");
-                    alert.showAndWait();
-
-                    // TO UPDATE THE TABLEVIEW
-                    studentGradesShowListData();
-                } else {
-                    return;
-                }
+                // TO UPDATE THE TABLEVIEW
+                studentGradesShowListData();
+            } else {
+                return;
+            }
 
 //            }
-        // NOT WE ARE CLOSER TO THE ENDING PART  :) LETS PROCEED TO DASHBOARD FORM
+            // NOT WE ARE CLOSER TO THE ENDING PART  :) LETS PROCEED TO DASHBOARD FORM
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -1382,11 +1332,9 @@ public class dashboardController implements Initializable {
             homeDisplayTotalEnrolledStudents();
             homeDisplayMaleEnrolled();
             homeDisplayFemaleEnrolled();
-            homeDisplayEnrolledMaleChart();
-            homeDisplayFemaleEnrolledChart();
-            homeDisplayTotalEnrolledChart();
 
         } else if (event.getSource() == addStudents_btn) {
+            final ExecutorService executorService = Executors.newFixedThreadPool(5);
             home_form.setVisible(false);
             addStudents_form.setVisible(true);
             availableCourse_form.setVisible(false);
@@ -1398,6 +1346,18 @@ public class dashboardController implements Initializable {
             studentGrade_btn.setStyle("-fx-background-color:transparent");
 
 //            TO BECOME UPDATED ONCE YOU CLICK THE ADD STUDENTS BUTTON ON NAV
+//            CompletableFuture<Void> future1 = CompletableFuture.runAsync(dashboardController::addStudentsShowListData, executorService);
+//            CompletableFuture<Void> future2 = CompletableFuture.runAsync(YourClassName::addStudentsYearList, executorService);
+//            CompletableFuture<Void> future3 = CompletableFuture.runAsync(YourClassName::addStudentsGenderList, executorService);
+//            CompletableFuture<Void> future4 = CompletableFuture.runAsync(YourClassName::addStudentsStatusList, executorService);
+//            CompletableFuture<Void> future5 = CompletableFuture.runAsync(YourClassName::addStudentsCourseList, executorService);
+//            CompletableFuture<Void> future6 = CompletableFuture.runAsync(YourClassName::addStudentsSearch, executorService);
+//
+//            // Wait for all futures to complete
+//            CompletableFuture.allOf(future1, future2, future3, future4, future5, future6).join();
+
+            // Shutdown the executor service when done
+//            executorService.shutdown();
             addStudentsShowListData();
             addStudentsYearList();
             addStudentsGenderList();
@@ -1454,9 +1414,6 @@ public class dashboardController implements Initializable {
         homeDisplayTotalEnrolledStudents();
         homeDisplayMaleEnrolled();
         homeDisplayFemaleEnrolled();
-        homeDisplayEnrolledMaleChart();
-        homeDisplayFemaleEnrolledChart();
-        homeDisplayTotalEnrolledChart();
 
         // TO SHOW IMMIDIATELY WHEN WE PROCEED TO DASHBOARD APPLICATION FORM
         addStudentsShowListData();

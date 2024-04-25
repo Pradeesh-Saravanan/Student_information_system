@@ -1,16 +1,22 @@
-
 .top-form{
     -fx-background-color:#fff;
     -fx-border-color:#000;
     -fx-border-width:.4px .4px .2px .4px;
 }
-
+#addStudents_form{
+    -fx-background-image: url('lake.jpg');
+}
+#background1{
+    -fx-background-color: rgba(255, 255, 255, 0.3);
+}
+.table-view {
+    -fx-background-color: rgba(0, 0, 0, 0.74);
+}
 .semi-top-form{
     -fx-background-color:#efefef;
     -fx-border-color:#000;
     -fx-border-width:.2px .4px .4px .4px;
 }
-
 .close{
     -fx-background-color:transparent;
     -fx-cursor:hand;
@@ -18,7 +24,6 @@
 .close:hover{
     -fx-background-color:#fb3d63;
 }
-
 .minimize{
     -fx-background-color:transparent;
     -fx-cursor:hand;
@@ -26,20 +31,17 @@
 .minimize:hover{
     -fx-background-color:#ddd;
 }
-
 .nav-form{
     -fx-background-color:linear-gradient(to bottom right, cornflowerblue, black);
 }
-
 .nav-btn{
-    -fx-background-color:linear-gradient(to bottom right, cornflowerblue, black);
+    -fx-background-color:transparent;
     -fx-cursor:hand;
     -fx-text-fill:#fff;
     -fx-font-size:15px;
     -fx-font-family:"Arial";
     -fx-alignment:CENTER-LEFT;
 }
-
 .logout{
     -fx-background-color:#2c84bf;
     -fx-background-radius:10px;
@@ -48,21 +50,17 @@
 .logout:hover{
     -fx-background-color:#1593e7;
 }
-
 .shadow{
     -fx-effect:dropshadow(three-pass-box, rgba(0,0,0,0.4), 6,0,0,0);
 }
-
 .white-bg{
     -fx-background-color:#fff;
     -fx-background-radius:8px;
 }
-
 .card{
     -fx-background-color:linear-gradient(to right, cornflowerblue, black);
     -fx-background-radius:4px;
 }
-
 .search{
     -fx-background-color:transparent;
     -fx-border-color:linear-gradient(to bottom right, cornflowerblue, black);
@@ -72,11 +70,9 @@
     -fx-font-size:14px;
     -fx-padding:0px 0px 0px 28px;
 }
-
 .search:focused{
     -fx-border-width:1.8px;
 }
-
 .table-view{
     -fx-background-color:transparent;
     -fx-padding:0px;
@@ -100,7 +96,6 @@
     -fx-text-fill:#fff;
     -fx-font-family:"Arial";
 }
-
 .textfield{
     -fx-background-color:linear-gradient(to bottom, #efefef, #eee);
     -fx-background-radius:4px;
@@ -113,7 +108,6 @@
     -fx-background-color:#fff;
     -fx-border-width:1px;
 }
-
 .insert-btn{
     -fx-background-color:transparent;
     -fx-text-fill:red;
@@ -121,9 +115,8 @@
     -fx-font-family:"Arial";
     -fx-cursor:hand;
 }
-
 .add-btn{
-    -fx-background-color:#2d5278;
+    -fx-background-color:linear-gradient(to bottom right, cornflowerblue, black);
     -fx-background-radius:8px;
     -fx-cursor:hand;
     -fx-text-fill:#fff;
@@ -131,11 +124,10 @@
     -fx-font-family:"Arial";
 }
 .add-btn:hover{
-    -fx-background-color:#2268ae;
+    -fx-background-color:linear-gradient(to bottom right, cornflowerblue, black);
 }
-
 .update-btn{
-    -fx-background-color:#2d7755;
+    -fx-background-color:linear-gradient(to bottom right, cornflowerblue, black);
     -fx-background-radius:8px;
     -fx-cursor:hand;
     -fx-text-fill:#fff;
@@ -143,11 +135,10 @@
     -fx-font-family:"Arial";
 }
 .update-btn:hover{
-    -fx-background-color:#22ad72;
+    -fx-background-color:linear-gradient(to bottom right, cornflowerblue, black);
 }
-
 .delete-btn{
-    -fx-background-color:#90242f;
+    -fx-background-color:linear-gradient(to bottom right, cornflowerblue, black);
     -fx-background-radius:8px;
     -fx-cursor:hand;
     -fx-text-fill:#fff;
@@ -155,11 +146,10 @@
     -fx-font-family:"Arial";
 }
 .delete-btn:hover{
-    -fx-background-color:#c51f32;
+    -fx-background-color:linear-gradient(to bottom right, cornflowerblue, black);
 }
-
 .clear-btn{
-    -fx-background-color:#6e2275;
+    -fx-background-color:linear-gradient(to bottom right, cornflowerblue, black);
     -fx-background-radius:8px;
     -fx-cursor:hand;
     -fx-text-fill:#fff;
@@ -167,9 +157,8 @@
     -fx-font-family:"Arial";
 }
 .clear-btn:hover{
-    -fx-background-color:#ae21ac;
+    -fx-border-color:linear-gradient(to bottom right, cornflowerblue, black);
 }
-
 .label-info{
     -fx-background-color:#fff;
     -fx-background-radius:4px;
@@ -179,4 +168,3 @@
     -fx-border-radius:4px;
     -fx-padding:0px 0px 0px 5px;
 }
-/* NOW FINALLY WE FINISHED THE COMPONENTS, NOW LETS NAME ALL OF THEM : )*/

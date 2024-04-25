@@ -1,0 +1,68 @@
+#home_page,
+#addStudents_form,
+#availableCourse_form,
+#studentGrade_form {
+    -fx-background-color: rgba(0, 0, 0, 0); /* Semi-transparent black */
+    -fx-effect: blur(30px); /* Blur effect */
+    -fx-background-image: url('lake.jpg');
+    -fx-background-size: cover;
+    -fx-background-color: rgba(255, 255, 255, 0.5); /* Semi-transparent white */
+    -fx-effect: innershadow(gaussian, rgba(255, 255, 255, 0.5), 10, 0, 0, 0); /* Glass effect */
+}
+
+.text-field {
+    -fx-background-color: rgba(0, 0, 0, 0.74); /* Semi-transparent black */
+    -fx-effect: blur(10px); /* Blur effect */    
+-fx-background-radius: 5px; /* rounded corners */
+    -fx-padding: 10px;
+    -fx-effect: innershadow(gaussian, rgba(255, 255, 255, 0.5), 10, 0, 0, 0); /* Glass effect */
+}
+
+.table-view {
+    -fx-background-color: rgba(0, 0, 0, 0.74); /* Semi-transparent black */
+    -fx-effect: blur(30px); /* Blur effect */   
+ -fx-background-radius: 5px; /* rounded corners */
+    -fx-effect: innershadow(gaussian, rgba(255, 255, 255, 0.5), 10, 0, 0, 0); /* Glass effect */
+}
+
+.table-view .column-header-background {
+    -fx-background-color: linear-gradient(#4eff4e, #1aff1a); /* Gradient color */
+}
+
+/* Glass effect for ComboBox */
+.combo-box {
+    -fx-background-color: rgba(0, 0, 0, 0.74); /* Semi-transparent black */
+    -fx-effect: blur(10px); /* Blur effect */
+    -fx-background-radius: 5px; /* rounded corners */
+    -fx-effect: innershadow(gaussian, rgba(255, 255, 255, 0.5), 10, 0, 0, 0); /* Glass effect */
+}
+
+/* Glass effect for DatePicker */
+.date-picker {
+     -fx-background-color: rgba(0, 0, 0, 0.74); /* Semi-transparent black */
+    -fx-effect: blur(10px); /* Blur effect */   
+ -fx-background-radius: 5px; /* rounded corners */
+    -fx-effect: innershadow(gaussian, rgba(255, 255, 255, 0.5), 10, 0, 0, 0); /* Glass effect */
+}
+
+
+.button-container {
+    -fx-spacing: 10px; /* Adjust the spacing between buttons */
+}
+/* Enlarge effect on button hover */
+.button {
+    -fx-background-color: linear-gradient(#EA8D8D, #A890FE); /* Gradient color (No Man's) */
+    -fx-text-fill: white; /* text color */
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.5), 10, 0, 0, 1); /* Shadow effect */
+    -fx-transition: all 0.3s;
+    -fx-transition: background-color 2.5s; /* Delay for hover effect */
+}
+
+.button:hover {
+    -fx-background-color: linear-gradient(#D8B5FF, #1EAE98); /* Gradient color change on hover (No Man's) */
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.8), 10, 0, 0, 0.9); /* Shadow effect on hover */
+    -fx-background-radius: 20px; /* rounded corners */
+    -fx-padding: 5px 15px; /* Enlarge padding */
+    
+}
+
