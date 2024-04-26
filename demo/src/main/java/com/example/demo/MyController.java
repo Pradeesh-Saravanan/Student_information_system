@@ -9,23 +9,6 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import java.sql.*;
-
-//import static com.example.demo.database.connectDb;
-
-//class database{
-//    public static Connection connectDb(){
-//        try {
-////            Class.forName("com.mysql.jdbc.Driver");
-//            Connection connect;
-//            connect = DriverManager.getConnection("jdbc:mysql://localhost:3306/memory","root","Mysql@42");
-//            return connect;
-//        }
-//        catch(Exception e){
-//            e.printStackTrace();
-//        }
-//        return null;
-//    }
-//}
 public class MyController {
     @FXML
     private TextField usernameField;

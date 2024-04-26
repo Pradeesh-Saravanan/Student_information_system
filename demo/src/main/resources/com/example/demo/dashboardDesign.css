@@ -19,14 +19,12 @@
     -fx-background-color:rgba(0,0,0,0.1);
     -fx-background-radius:10px;
 }
-#addStudents_form{
-    -fx-background-image: url('lake.jpg');
-}
 #home_form,
 #addStudents_form,
 #availableCourse_form,
 #studentGrade_form{
     -fx-background-image : url("lake.jpg");
+    -fx-background-size:cover;
 
 }
 #background1{

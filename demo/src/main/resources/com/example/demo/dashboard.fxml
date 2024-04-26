@@ -1,7 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
-<!--<?import dist.lib.fontawesome.FontAwesomeIcon?>-->
-
 <?import java.lang.String?>
 <?import javafx.geometry.Rectangle2D?>
 <?import javafx.scene.control.Button?>
@@ -17,7 +14,6 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
-
 <StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="711.0" prefWidth="1199.0" style="-fx-background-radius: 20; -fx-border-radius: 20;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo.dashboardController">
    <children>
       <AnchorPane fx:id="main_form" prefHeight="200.0" prefWidth="200.0" stylesheets="@dashboardDesign.css">
@@ -31,7 +27,6 @@
                      <children>
                         <AnchorPane layoutX="2.0" layoutY="108.0" prefHeight="555.0" prefWidth="203.0" styleClass="nav-form" stylesheets="@dashboardDesign.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <children>
-                              <!--                              <FontAwesomeIcon fill="WHITE" glyphName="USER" layoutX="69.0" layoutY="100.0" size="7em" />-->
                               <Label layoutX="65.0" layoutY="112.0" text="Welcome," textFill="WHITE">
                                  <font>
                                     <Font name="Tahoma" size="17.0" />
@@ -44,29 +39,15 @@
                               </Label>
                               <Line endX="85.0" layoutX="109.0" layoutY="173.0" startX="-100.0" stroke="WHITE" />
                               <Button fx:id="home_btn" layoutX="12.0" layoutY="211.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="35.0" prefWidth="180.0" styleClass="nav-btn" stylesheets="@dashboardDesign.css" text="Home">
-                                 <!--                                 <graphic>-->
-                                 <!--                                    <FontAwesomeIcon fill="WHITE" glyphName="HOME" size="1.5em" />-->
-                                 <!--                                 </graphic>-->
                               </Button>
                               <Button fx:id="addStudents_btn" layoutX="12.0" layoutY="246.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="35.0" prefWidth="180.0" styleClass="nav-btn" stylesheets="@dashboardDesign.css" text="Add Students">
-                                 <graphic>
-                                    <!--                                    <FontAwesomeIcon fill="WHITE" glyphName="PLUS_CIRCLE" size="1.5em" />-->
-                                 </graphic>
+
                               </Button>
                               <Button fx:id="availableCourse_btn" layoutX="12.0" layoutY="281.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="35.0" prefWidth="180.0" styleClass="nav-btn" stylesheets="@dashboardDesign.css" text="Available Courses">
-                                 <graphic>
-                                    <!--                                    <FontAwesomeIcon fill="WHITE" glyphName="BOOK" size="1.5em" />-->
-                                 </graphic>
                               </Button>
                               <Button fx:id="studentGrade_btn" layoutX="12.0" layoutY="316.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="35.0" prefWidth="180.0" styleClass="nav-btn" stylesheets="@dashboardDesign.css" text="Grades of Students">
-                                 <graphic>
-                                    <!--                                    <FontAwesomeIcon fill="WHITE" glyphName="CLIPBOARD" size="1.5em" />-->
-                                 </graphic>
                               </Button>
                               <Button fx:id="logout" layoutX="12.0" layoutY="615.0" mnemonicParsing="false" onAction="#logout" stylesheets="@dashboardDesign.css" text="&lt;">
-                                 <graphic>
-                                    <!--                                    <FontAwesomeIcon fill="WHITE" glyphName="SIGN_OUT" size="2em" />-->
-                                 </graphic>
                                  <styleClass>
                                     <String fx:value="logout" />
                                     <String fx:value="shadow" />
@@ -87,13 +68,12 @@
                <center>
                   <AnchorPane fx:id="func" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                      <children>
-                        <AnchorPane fx:id="home_form" layoutX="90.0" layoutY="138.0" prefHeight="555.0" prefWidth="897.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <AnchorPane fx:id="home_form" layoutX="90.0" layoutY="138.0" prefHeight="555.0" prefWidth="897.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <children>
                               <AnchorPane fx:id="glass" layoutX="654.0" layoutY="29.0" prefHeight="654.0" prefWidth="308.0" styleClass="glass" stylesheets="@dashboardDesign.css" />
                               <AnchorPane layoutX="685.0" layoutY="69.0" prefHeight="253.0" prefWidth="253.0" styleClass="card" stylesheets="@dashboardDesign.css">
                                  <children>
-                                    <!--                                                <FontAwesomeIcon fill="WHITE" glyphName="USERS" layoutX="14.0" layoutY="77.0" size="4em" />-->
-                                    <Label layoutX="69.0" layoutY="214.0" prefHeight="19.0" prefWidth="170.0" text="Total Enrolled Students" textFill="WHITE">
+                                   <Label layoutX="69.0" layoutY="214.0" prefHeight="19.0" prefWidth="170.0" text="Total Enrolled Students" textFill="WHITE">
                                        <font>
                                           <Font name="Tahoma" size="15.0" />
                                        </font>
@@ -107,7 +87,6 @@
                               </AnchorPane>
                               <AnchorPane layoutX="685.0" layoutY="529.0" prefHeight="120.0" prefWidth="253.0" styleClass="card" stylesheets="@dashboardDesign.css">
                                  <children>
-                                    <!--                                                <FontAwesomeIcon fill="WHITE" glyphName="FEMALE" layoutX="14.0" layoutY="79.0" size="4em" />-->
                                     <Label layoutX="56.0" layoutY="86.0" prefHeight="19.0" prefWidth="175.0" text="Enrolled Female Students" textFill="WHITE">
                                        <font>
                                           <Font name="Tahoma" size="15.0" />
@@ -122,7 +101,6 @@
                               </AnchorPane>
                               <AnchorPane layoutX="685.0" layoutY="357.0" prefHeight="120.0" prefWidth="253.0" styleClass="card" stylesheets="@dashboardDesign.css">
                                  <children>
-                                    <!--                                                <FontAwesomeIcon fill="WHITE" glyphName="MALE" layoutX="14.0" layoutY="79.0" size="4em" />-->
                                     <Label layoutX="56.0" layoutY="86.0" prefHeight="19.0" prefWidth="175.0" text="Enrolled Male Students" textFill="WHITE">
                                        <font>
                                           <Font name="Tahoma" size="15.0" />
@@ -137,14 +115,13 @@
                               </AnchorPane>
                            </children>
                         </AnchorPane>
-                        <AnchorPane fx:id="addStudents_form" layoutX="99.0" layoutY="143.0" prefHeight="555.0" prefWidth="897.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <AnchorPane fx:id="addStudents_form" layoutX="99.0" layoutY="143.0" prefHeight="555.0" prefWidth="897.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <children>
                               <AnchorPane layoutX="14.0" layoutY="14.0" prefHeight="700.0" prefWidth="965.0" styleClass="glass_dark" stylesheets="@dashboardDesign.css">
                                  <children>
                                     <AnchorPane prefHeight="262.0" prefWidth="965.0" styleClass="glass" stylesheets="@dashboardDesign.css">
                                        <children>
-                                          <TextField fx:id="addStudents_search" layoutX="14.0" layoutY="14.0" onKeyTyped="#addStudentsSearch" prefHeight="30.0" prefWidth="274.0" promptText="Search" styleClass="search" stylesheets="@dashboardDesign.css" visible="false" />
-                                          <!--                                          <FontAwesomeIcon fill="#727272" glyphName="SEARCH" layoutX="21.0" layoutY="35.0" size="1.5em" />-->
+                                          <TextField fx:id="addStudents_search" layoutX="14.0" layoutY="14.0" prefHeight="30.0" prefWidth="274.0" promptText="Search" styleClass="search" stylesheets="@dashboardDesign.css" visible="false" />
                                           <TableView fx:id="addStudents_tableView" layoutX="22.0" layoutY="13.0" onMouseClicked="#addStudentsSelect" prefHeight="234.0" prefWidth="897.0">
                                              <columns>
                                                 <TableColumn fx:id="addStudents_col_studentNum" prefWidth="75.0" text="Student #" />
@@ -305,7 +282,6 @@
                                        </columns>
                                     </TableView>
                                     <TextField fx:id="studentGrade_search" layoutX="14.0" layoutY="14.0" onKeyTyped="#studentGradesSearch" prefHeight="30.0" prefWidth="269.0" promptText="Search" styleClass="search" stylesheets="@dashboardDesign.css" visible="false" />
-                                    <!--                                    <FontAwesomeIcon glyphName="SEARCH" layoutX="22.0" layoutY="35.0" size="1.5em" />-->
                                  </children>
                               </AnchorPane>
                            </children>

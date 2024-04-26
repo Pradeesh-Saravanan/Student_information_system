@@ -4,12 +4,8 @@
  * and open the template in the editor.
  */
 package com.example.demo;
-
 import java.sql.Date;
-
-
 public class studentData {
-
     private Integer studentNum;
     private String year;
     private String course;
@@ -22,8 +18,6 @@ public class studentData {
     private Double firstSem;
     private Double secondSem;
     private Double finals;
-
-    // MAKE SURE THAT SAME DATATYPE THAT YOU WILL PUT THERE
     public studentData(Integer studentNum, String year, String course, String firstName, String lastName, String gender, Date birth, String status, String image) {
         this.studentNum = studentNum;
         this.year = year;
@@ -35,7 +29,6 @@ public class studentData {
         this.status = status;
         this.image = image;
     }
-
     public studentData(Integer studentNum, String year, String course, Double firstSem, Double secondSem, Double finals) {
         this.studentNum = studentNum;
         this.year = year;
@@ -44,54 +37,40 @@ public class studentData {
         this.secondSem = secondSem;
         this.finals = finals;
     }
-
     public Integer getStudentNum() {
         return studentNum;
     }
-
     public String getYear() {
         return year;
     }
-
     public String getCourse() {
         return course;
     }
-
     public String getFirstName() {
         return firstName;
     }
-
     public String getLastName() {
         return lastName;
     }
-
     public String getGender() {
         return gender;
     }
-
     public Date getBirth() {
         return birth;
     }
-
     public String getStatus() {
         return status;
     }
-
     public String getImage() {
         return image;
     }
-
     public Double getFirstSem() {
         return firstSem;
     }
-
     public Double getSecondSem() {
         return secondSem;
     }
-
     public Double getFinals() {
         return finals;
     }
-
-    // PLEASE FOLLOW ME IF THE VARS ARE THE SAME TO ME
 }
